@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://brttjes2krhtf"]
+[gd_scene load_steps=11 format=3 uid="uid://qtbapb4ks5rj"]
 
 [ext_resource type="Shader" path="res://third_parties/destructible_terrain_performance/damage_map.gdshader" id="1_0vw7e"]
 [ext_resource type="Texture2D" uid="uid://6y2euh4iuvil" path="res://third_parties/destructible_terrain_performance/assets/worms_map.png" id="2_ypcic"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dyuecegi7nnp7" path="res://third_parties/destructible_terrain_performance/carving_area.tscn" id="8_bo8dk"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_abn6f"]
-viewport_path = NodePath("map/Sprite2D/damageMap")
+viewport_path = NodePath("Sprite2D/damageMap")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_afvh4"]
 resource_local_to_scene = true
