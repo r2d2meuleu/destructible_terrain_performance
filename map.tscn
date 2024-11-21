@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=3 uid="uid://brttjes2krhtf"]
+
+[ext_resource type="Shader" path="res://third_parties/destructible_terrain_performance/damage_map.gdshader" id="1_0vw7e"]
+[ext_resource type="Texture2D" uid="uid://6y2euh4iuvil" path="res://third_parties/destructible_terrain_performance/assets/worms_map.png" id="2_ypcic"]
+[ext_resource type="Script" path="res://third_parties/destructible_terrain_performance/SubViewport.gd" id="3_4t0jj"]
+[ext_resource type="Script" path="res://third_parties/destructible_terrain_performance/Polygon2D.gd" id="4_5rpf5"]
+[ext_resource type="Texture2D" uid="uid://dln25smnoibgh" path="res://third_parties/destructible_terrain_performance/assets/rigid_sprite.png" id="5_epomc"]
+[ext_resource type="Script" path="res://third_parties/destructible_terrain_performance/circleDraw.gd" id="6_exhug"]
+[ext_resource type="PackedScene" uid="uid://w1j4rfy2q3vl" path="res://third_parties/destructible_terrain_performance/quadrants_manager.tscn" id="7_v7b0u"]
+[ext_resource type="PackedScene" uid="uid://dyuecegi7nnp7" path="res://third_parties/destructible_terrain_performance/carving_area.tscn" id="8_bo8dk"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_abn6f"]
+viewport_path = NodePath("map/Sprite2D/damageMap")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_afvh4"]
+resource_local_to_scene = true
+shader = ExtResource("1_0vw7e")
+shader_parameter/destruction_mask = SubResource("ViewportTexture_abn6f")
+
+[node name="map" type="Node2D"]
+
+[node name="carvingArea" parent="." instance=ExtResource("8_bo8dk")]
+unique_name_in_owner = true
+visible = false
+scale = Vector2(1, 0.997905)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_afvh4")
+position = Vector2(786, 667)
+texture = ExtResource("2_ypcic")
+
+[node name="damageMap" type="SubViewport" parent="Sprite2D"]
+unique_name_in_owner = true
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1280, 1280)
+render_target_clear_mode = 1
+render_target_update_mode = 4
+script = ExtResource("3_4t0jj")
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprite2D/damageMap"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(1070, 554, 1304, 382, 967, 226)
+script = ExtResource("4_5rpf5")
+
+[node name="circleDraw" type="Sprite2D" parent="Sprite2D/damageMap"]
+unique_name_in_owner = true
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("5_epomc")
+script = ExtResource("6_exhug")
+
+[node name="quadrantsManager" parent="." node_paths=PackedStringArray("sprite", "carving_area") instance=ExtResource("7_v7b0u")]
+unique_name_in_owner = true
+scale = Vector2(1, 0.997905)
+sprite = NodePath("../Sprite2D")
+carving_area = NodePath("../carvingArea")
