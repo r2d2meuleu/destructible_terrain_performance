@@ -21,7 +21,6 @@ shader_parameter/destruction_mask = SubResource("ViewportTexture_abn6f")
 
 [node name="carvingArea" parent="." instance=ExtResource("8_bo8dk")]
 unique_name_in_owner = true
-visible = false
 scale = Vector2(1, 0.997905)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
