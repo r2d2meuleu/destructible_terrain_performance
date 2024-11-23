@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cobn0bfld8dkd"]
 
 [ext_resource type="Script" path="res://third_parties/destructible_terrain_performance/main.gd" id="1_ecia5"]
-[ext_resource type="PackedScene" uid="uid://qtbapb4ks5rj" path="res://map.tscn" id="2_a30o5"]
+[ext_resource type="PackedScene" uid="uid://qtbapb4ks5rj" path="res://third_parties/destructible_terrain_performance/scenes/map.tscn" id="2_a30o5"]
 [ext_resource type="PackedScene" uid="uid://b28wydl4jdn30" path="res://third_parties/destructible_terrain_performance/wizard.tscn" id="5_y6082"]
 [ext_resource type="PackedScene" uid="uid://c2yrp22av5tn" path="res://third_parties/destructible_terrain_performance/debug_camera.tscn" id="6_iymj7"]
 
