@@ -28,6 +28,7 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_afvh4")
 position = Vector2(786, 667)
 texture = ExtResource("2_ypcic")
+centered = false
 
 [node name="damageMap" type="SubViewport" parent="Sprite2D"]
 unique_name_in_owner = true

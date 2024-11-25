@@ -12,6 +12,10 @@ var Quadrant = preload("res://third_parties/destructible_terrain_performance/qua
 @onready var CarvingArea = preload("res://third_parties/destructible_terrain_performance/carving_area.tscn")
 @onready var inverted_viewport: SubViewport = $SubViewport
 
+func build_grid_from_image2(sp):
+	sprite = sp
+	build_grid_from_image()
+
 func build_grid_from_image():
 	# create a bitmap of true/false values based on the image alpha
 	var bitmap := BitMap.new()
@@ -89,10 +93,16 @@ func init_grid(polygon_shape = Array()):
 
 
 func carve(carving_area):
+	print (carving_area.global_position)
+	print (global_position)
+	print (carving_area.global_position - global_position)
 	var translated_polygon = Transform2D(0, carving_area.global_position - global_position) * (carving_area.get_polygon())
 	var affected_quadrants = _get_affected_quadrants(carving_area.collision_area)
+	# update collisions
 	for quadrant in affected_quadrants:
+		print (quadrant.name)
 		quadrant.carve(translated_polygon)
+	# update show terrain
 	%circleDraw.update(carving_area.global_position, carving_area.collision_area_shape.shape.radius)
 	print ("finished")
 
