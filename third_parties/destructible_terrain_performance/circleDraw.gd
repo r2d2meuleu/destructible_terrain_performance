@@ -5,11 +5,18 @@ var _radius = 50
 
 func update(pos: Vector2, radius: float):
 	visible = true
-	
-	global_position = world_to_viewport(pos)
-	
 	_radius = radius
+	
+	print("Explosion Position:", pos)
+	print("Explosion Radius:", radius)
+	
+	# Transform world position to texture coordinates
+	global_position = world_to_viewport(pos)
+	print("Mapped Global Position to Texture Coordinates:", global_position)
+	
+	# Scale the sprite according to the radius and texture size
 	scale = Vector2.ONE * (radius * 2 / texture.get_width()) * 0.9
+	print("Calculated Scale:", scale)
 
 func world_to_viewport(point: Vector2) -> Vector2:
 	var dynamic_texture_size = %damageMap.get_size()

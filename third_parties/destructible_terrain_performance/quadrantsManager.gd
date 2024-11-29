@@ -5,12 +5,11 @@ class_name QuadrantManager extends Node2D
 @export var grid_size: Vector2 = Vector2(10,5)
 @export var sprite: Sprite2D
 @export var carving_area: Node2D
-
+@export var damageMap:MaskViewport
 var quadrants_grid: Array = []
 var Quadrant = preload("res://third_parties/destructible_terrain_performance/quadrant.tscn")
-
 @onready var CarvingArea = preload("res://third_parties/destructible_terrain_performance/carving_area.tscn")
-@onready var inverted_viewport: SubViewport = $SubViewport
+#@onready var inverted_viewport: SubViewport = $SubViewport
 
 func build_grid_from_image2(sp):
 	sprite = sp
@@ -104,9 +103,23 @@ func carve(carving_area):
 		quadrant.carve(translated_polygon)
 	# update show terrain
 	%circleDraw.update(carving_area.global_position, carving_area.collision_area_shape.shape.radius)
-	print ("finished")
+	save_subviewport_image()
+	print ("finished exploding")
 
-
+func save_subviewport_image():
+	var image = damageMap.get_texture().get_image()
+	var timestamp = Time.get_datetime_dict_from_system()
+	var custom_string = "%04d-%02d-%02d %02d-%02d-%02d" % [
+		timestamp["year"], 
+		timestamp["month"], 
+		timestamp["day"],
+		timestamp["hour"], 
+		timestamp["minute"], 
+		timestamp["second"]
+	]
+	var path = "user://subviewport_snapshot_" + custom_string + ".png"
+	image.save_png(path)
+	print("Saved SubViewport snapshot at:", path)
 
 """
 Utils

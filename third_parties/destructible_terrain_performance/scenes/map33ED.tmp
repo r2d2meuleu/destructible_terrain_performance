@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://qtbapb4ks5rj"]
+[gd_scene load_steps=11 format=3 uid="uid://qtbapb4ks5rj"]
 
 [ext_resource type="Shader" path="res://third_parties/destructible_terrain_performance/damage_map.gdshader" id="1_0vw7e"]
 [ext_resource type="Script" path="res://third_parties/destructible_terrain_performance/scenes/debug.gd" id="1_t3mat"]
 [ext_resource type="Script" path="res://third_parties/destructible_terrain_performance/SubViewport.gd" id="3_4t0jj"]
 [ext_resource type="Script" path="res://third_parties/destructible_terrain_performance/Polygon2D.gd" id="4_5rpf5"]
-[ext_resource type="Texture2D" uid="uid://e4ptqfuwoe1r" path="res://testScene.png" id="4_l1cuy"]
 [ext_resource type="Texture2D" uid="uid://dln25smnoibgh" path="res://third_parties/destructible_terrain_performance/assets/rigid_sprite.png" id="5_epomc"]
 [ext_resource type="Script" path="res://third_parties/destructible_terrain_performance/circleDraw.gd" id="6_exhug"]
 [ext_resource type="PackedScene" uid="uid://w1j4rfy2q3vl" path="res://third_parties/destructible_terrain_performance/quadrants_manager.tscn" id="7_v7b0u"]
@@ -29,7 +28,6 @@ scale = Vector2(1, 0.997905)
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_afvh4")
 position = Vector2(786, 667)
-texture = ExtResource("4_l1cuy")
 centered = false
 
 [node name="damageMap" type="SubViewport" parent="Sprite2D"]
@@ -53,9 +51,8 @@ texture_repeat = 1
 texture = ExtResource("5_epomc")
 script = ExtResource("6_exhug")
 
-[node name="quadrantsManager" parent="." node_paths=PackedStringArray("sprite", "carving_area", "damageMap") instance=ExtResource("7_v7b0u")]
+[node name="quadrantsManager" parent="." node_paths=PackedStringArray("sprite", "carving_area") instance=ExtResource("7_v7b0u")]
 unique_name_in_owner = true
 scale = Vector2(1, 0.997905)
 sprite = NodePath("../Sprite2D")
 carving_area = NodePath("../carvingArea")
-damageMap = NodePath("../Sprite2D/damageMap")

@@ -9,16 +9,49 @@ var mouse_pos: Vector2 = Vector2()
 @onready var carving_area:= get_node("map/carvingArea")
 @onready var quadrantsManager:QuadrantManager = get_node("map/quadrantsManager")
 @onready var sprite = get_node("map/Sprite2D")
+@onready var map = get_node("map")
 var Quadrant = preload("res://third_parties/destructible_terrain_performance/quadrant.tscn")
 
-
 func _ready():
-	_make_mouse_circle()
+	#load_image_to_sprite()
+	#_make_mouse_circle()
 	print (sprite.name)
 	quadrantsManager.sprite = sprite
 	quadrantsManager.carving_area = carving_area
 	quadrantsManager.position = sprite.position
+	var damageMap:MaskViewport = get_node("map/Sprite2D/damageMap")
+	damageMap.setup(sprite)
+	
 	quadrantsManager.build_grid_from_image()
+
+func load_image_to_sprite():
+	var path = "res://testScene.png"
+	print (path)
+	if FileAccess.file_exists(path):
+		print ("TRUE")
+	else:
+		print ('FALSE')
+	var _image:Image = Image.new()
+	var _itex:ImageTexture = ImageTexture.new()
+	if _image.load(path) == OK:
+		var texture = load(path)
+		print("Image loaded successfully")
+		sprite.texture = texture
+		#_itex = ImageTexture.create_from_image(_image)
+		#if _itex:
+			## var sprite:Sprite2D = get_node("map/Sprite2D")
+			#sprite.texture = _itex
+			#print (sprite.texture.get_image().get_size())
+			#sprite.position = map.position
+	
+
+# func _ready():
+# 	_make_mouse_circle()
+# 	print (sprite.name)
+# 	quadrantsManager.sprite = sprite
+# 	quadrantsManager.carving_area = carving_area
+# 	quadrantsManager.position = sprite.position
+# 	quadrantsManager.build_grid_from_image()
 	
 
 #
