@@ -13,19 +13,33 @@ var mouse_pos: Vector2 = Vector2()
 var Quadrant = preload("res://third_parties/destructible_terrain_performance/quadrant.tscn")
 
 func _ready():
-	#load_image_to_sprite()
-	#_make_mouse_circle()
-	print (sprite.name)
-	quadrantsManager.sprite = sprite
-	quadrantsManager.carving_area = carving_area
-	quadrantsManager.position = sprite.position
-	var damageMap:MaskViewport = get_node("map/Sprite2D/damageMap")
-	damageMap.setup(sprite)
-	
-	quadrantsManager.build_grid_from_image()
-
-func load_image_to_sprite():
 	var path = "res://testScene.png"
+	var texture = await load_image_async(path)
+	if texture:
+		sprite.texture = texture
+		#_make_mouse_circle()
+		print (sprite.name)
+		quadrantsManager.sprite = sprite
+		quadrantsManager.carving_area = carving_area
+		quadrantsManager.position = sprite.position
+		var damageMap:MaskViewport = get_node("map/Sprite2D/damageMap")
+		damageMap.setup(sprite)
+
+		quadrantsManager.build_grid_from_image()
+
+func load_image_async(path: String) -> ImageTexture:
+	if not FileAccess.file_exists(path):
+		push_error("The file does not exist.")
+	var image = Image.new()
+	var texture = ImageTexture.new()
+	var error = image.load(path)
+	if error != OK:
+		print("Failed to load image: ", path)
+		return null
+	texture.set_image(image)
+	return texture
+
+func load_image_to_sprite(path: String) -> void:
 	print (path)
 	if FileAccess.file_exists(path):
 		print ("TRUE")
@@ -43,7 +57,7 @@ func load_image_to_sprite():
 			#sprite.texture = _itex
 			#print (sprite.texture.get_image().get_size())
 			#sprite.position = map.position
-	
+
 
 # func _ready():
 # 	_make_mouse_circle()
@@ -52,7 +66,7 @@ func load_image_to_sprite():
 # 	quadrantsManager.carving_area = carving_area
 # 	quadrantsManager.position = sprite.position
 # 	quadrantsManager.build_grid_from_image()
-	
+
 
 #
 #func _process(_delta):

@@ -15,6 +15,10 @@ run/main_scene="res://third_parties/destructible_terrain_performance/main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://third_parties/destructible_terrain_performance/icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/external_editor/plugin.cfg", "res://addons/toggle_external_editor/plugin.cfg")
+
 [input]
 
 click_left={
