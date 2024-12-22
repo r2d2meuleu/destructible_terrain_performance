@@ -18,7 +18,10 @@ func build_grid_from_image2(sp):
 func build_grid_from_image():
 	# create a bitmap of true/false values based on the image alpha
 	var bitmap := BitMap.new()
-	var texture = sprite.texture.get_image()
+	var texture:Image = sprite.texture.get_image()
+	print ("texture:")
+	print(sprite.texture.get_image())
+	print(sprite.texture.get_image().resource_path)
 	# draw at lower res for performance
 	bitmap.create_from_image_alpha(texture)
 	bitmap.resize(Vector2(sprite.texture.get_image().get_width(), sprite.texture.get_image().get_height()) * sprite.scale)

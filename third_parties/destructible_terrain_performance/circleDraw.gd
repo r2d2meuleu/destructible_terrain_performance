@@ -4,6 +4,8 @@ var _radius = 50
 @onready var world_size = %Sprite2D.get_rect().size
 
 func update(pos: Vector2, radius: float):
+	#if world_size == Vector2(0,0):
+	world_size = %Sprite2D.get_rect().size
 	visible = true
 	_radius = radius
 	

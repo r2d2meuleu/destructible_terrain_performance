@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://third_parties/destructible_terrain_performance/damage_map.gdshader" id="1_0vw7e"]
 [ext_resource type="Script" path="res://third_parties/destructible_terrain_performance/scenes/debug.gd" id="1_t3mat"]
-[ext_resource type="Script" path="res://third_parties/destructible_terrain_performance/SubViewport.gd" id="3_4t0jj"]
+[ext_resource type="Script" path="res://third_parties/destructible_terrain_performance/MaskViewport.gd" id="3_4t0jj"]
 [ext_resource type="Script" path="res://third_parties/destructible_terrain_performance/Polygon2D.gd" id="4_5rpf5"]
 [ext_resource type="Texture2D" uid="uid://dln25smnoibgh" path="res://third_parties/destructible_terrain_performance/assets/rigid_sprite.png" id="5_epomc"]
 [ext_resource type="Script" path="res://third_parties/destructible_terrain_performance/circleDraw.gd" id="6_exhug"]
@@ -35,7 +35,6 @@ unique_name_in_owner = true
 disable_3d = true
 transparent_bg = true
 size = Vector2i(1280, 1280)
-render_target_clear_mode = 1
 render_target_update_mode = 4
 script = ExtResource("3_4t0jj")
 

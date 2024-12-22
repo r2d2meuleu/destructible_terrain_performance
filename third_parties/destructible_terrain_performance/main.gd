@@ -24,6 +24,7 @@ func _ready():
 		quadrantsManager.position = sprite.position
 		var damageMap:MaskViewport = get_node("map/Sprite2D/damageMap")
 		damageMap.setup(sprite)
+		map.setup()
 
 		quadrantsManager.build_grid_from_image()
 
